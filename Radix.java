@@ -18,7 +18,7 @@ public class Radix{
     int length = buckets.length;
     for(int i = 0; i < length; i++)
     {
-
+      original.extend(buckets[i]);
     }
     /*
     Merge all of the linked lists in the bucket array into your original linked list. The original may have elements, and those should be kept.
