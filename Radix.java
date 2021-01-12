@@ -15,7 +15,11 @@ public class Radix{
 // Requires local copy of MyLinkedList
   public static void merge(MyLinkedList original,MyLinkedList[]buckets)
   {
-    int length = buckets.length; 
+    int length = buckets.length;
+    for(int i = 0; i < length; i++)
+    {
+
+    }
     /*
     Merge all of the linked lists in the bucket array into your original linked list. The original may have elements, and those should be kept.
     This is O(buckets.length) which should be 10 when we use this later.
