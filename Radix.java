@@ -16,7 +16,9 @@ nth(-123,2) -> 1
 
   public static int length(int n)
   {
-
+    String number = Integer.toString(n);
+    int Length_Value = number.length();
+    return Length_Value; 
   }
 /*
 return the number of digits in n.
