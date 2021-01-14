@@ -8,23 +8,16 @@ public class Radix{
   {
     return (int)(Math.log10(Math.abs(n))+1);
   }
-
-/*
-  public static void merge(MyLinkedList original,MyLinkedList[]buckets)
+  public static void merge( MyLinkedList original, MyLinkedList[]buckets)
   {
     int length = buckets.length;
     for(int i = 0; i < length; i++)
     {
       original.extend(buckets[i]);
     }
-  } */
-  /*
-  SECOND PART!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
-  (added after class)
-  You are given a doubly linked list class of integers SortableLinkedList. (Attached to the post)
-  Do not commit this SortableLinkedList file!
+  }
 
-  4. Modify your merge: */
+
   public static void merge( SortableLinkedList original, SortableLinkedList[]buckets)
   {
     int length = buckets.length;
@@ -34,9 +27,6 @@ public class Radix{
     }
   }
 
-  // Do NOT modify the SortableLinkedList class.
-
-  // 5. Write a method that sorts non-negative integer values:
   public static void radixSortSimple(SortableLinkedList data)
   {
     int Length_Greatest_Int = 0;
@@ -45,16 +35,11 @@ public class Radix{
     {
       buckets[i] = new SortableLinkedList();
     }
-    for(int i = 0; i < data.size(); i++)
-    {
-      int Current = data.get(i);
-      Length_Greatest_Int = Integer.max(length(Current), Length_Greatest_Int);
-      buckets[nth(Current, 0)].add(Current);
-    }
-
     while(data.size() != 0)
     {
-      data.remove(0);
+      int Current = data.remove(0);
+      Length_Greatest_Int = Integer.max(length(Current), Length_Greatest_Int);
+      buckets[nth(Current, 0)].add(Current);
     }
     merge(data,buckets);
 
@@ -65,20 +50,16 @@ public class Radix{
       {
         buckets[j] = new SortableLinkedList();
       }
-      for(int j = 0; j < data.size(); i++)
-      {
-        int Current = data.get(j);
-        buckets[nth(Current, i)].add(Current);
-      }
-
       while(data.size() != 0)
       {
-        data.remove(0);
+        int Current = data.remove(0);
+        buckets[nth(Current, i)].add(Current);
       }
       merge(data,buckets);
-
     }
   }
+
+
 
   // 6. Write a method that sorts any integer values:
   public static void radixSort(SortableLinkedList data)
@@ -88,7 +69,7 @@ public class Radix{
 
     while(data.size() != 0)
     {
-      int Current = data.get(0);
+      int Current = data.remove(0);
       if(Current < 0)
       {
         Negative.add(Current * -1);
@@ -97,7 +78,6 @@ public class Radix{
       {
         Positive.add(Current);
       }
-      data.remove(0);
     }
     radixSortSimple(Positive);
     radixSortSimple(Negative);
